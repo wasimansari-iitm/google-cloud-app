@@ -1,0 +1,78 @@
+<!-- templates/blogs.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Journal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .new-entry {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+        .new-entry:hover {
+            background-color: #45a049;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .blog-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .blog-card img {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .blog-card h2 {
+            margin-top: 0;
+            color: #444;
+        }
+        .blog-card p {
+            color: #666;
+        }
+        .blog-card strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Photo Journal</h1>
+    <a class="new-entry" href="/blogs">Create New Entry</a>
+    <div class="blog-grid">
+        {% for blog in blogs %}
+            <div class="blog-card">
+                <h2>{{ blog.title }}</h2>
+                <img src="{{ blog.image_url }}" alt="Blog image">
+                <p>{{ blog.content }}</p>
+                <p><strong>By:</strong> {{ blog.author }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
